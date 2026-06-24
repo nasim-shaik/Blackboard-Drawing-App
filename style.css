@@ -1,0 +1,57 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: black;
+}
+#empty-board{
+    display: grid;
+    grid-template-columns: 95% 5%;
+}
+#board{
+    border:4px solid brown;
+    height:100vh;
+    cursor: crosshair;
+}
+.menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:15px;
+}
+.menu h4{
+    color:white;
+    text-decoration: underline Red;
+    font-size: 23px;
+}
+button{
+    border-radius: 50%;
+    height:50px;
+    width:50px;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+button.active{
+    border: 2pc solid orangered;
+    background: #111;
+    color: #00ff99;
+}
+.white{
+    background-color: white;
+}
+.green{
+    background-color: green;
+}
+.blue{
+    background-color: blue;
+}
+.yellow{
+    background-color: yellow;
+}
+.clear{
+    background-color: transparent;
+    border:2px solid brown;
+    border-radius: 10px;
+    color:white;
+}

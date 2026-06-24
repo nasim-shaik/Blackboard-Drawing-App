@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="empty-board">
+        <canvas id="board"></canvas>
+        <div class="menu">
+            <h4>Color</h4>
+            <button class="white" onClick="setColor('#ffffff')"></button>
+            <button class="green" onClick="setColor('#00ff99')"></button>
+            <button class="blue" onClick="setColor('#00aaff')"></button>
+            <button class="yellow" onClick="setColor('#ffeb3b')"></button>
+            <button class="clear" onClick="clearBoard()">Clear</button>
+            <button class="clear" onClick="setEraser()">Eraser</button>
+        </div>
+    </section>
+</body>
+<script src="script.js"></script>
+</html>
