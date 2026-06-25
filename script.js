@@ -1,8 +1,24 @@
 const canvas = document.getElementById("board");
 const ctx = canvas.getContext("2d");
 
-canvas.width = canvas.parentElement.clientWidth * 0.93;
-canvas.height = window.innerHeight;
+function resizeCanvas(){
+const tempImage = canvas.toDataURL();
+const oldWidth = canvas.width;
+const oldHeight = canvas.height;
+
+canvas.width = canvas.parentElement.clientWidth;
+canvas.height = canvas.parentElement.clientHeight;
+ctx.lineCap = "round";
+ctx.lineWidth = ctx.lineWidth || 4;
+
+const img = new Image();
+img.src = tempImage;
+img.onload = function(){
+    ctx.drawImage(img, 0, 0);
+}
+}
+resizeCanvas();
+window.addEventListener("resize" , resizeCanvas);
 
 let drawing = false;
 
@@ -60,20 +76,21 @@ function setEraser(){
 canvas.addEventListener("touchstart" , (e) => {
     drawing = true;
     const touch = e.touches[0];
-    const rect = canvas.getBoundingclientRect();
-    ctx.beginPath(0);
+    const rect = canvas.getBoundingClientRect();
+    ctx.beginPath();
     ctx.moveTo(touch.clientX - rect.left, touch.clientY - rect.top);
+    e.preventDefault();
 });
 
 canvas.addEventListener("touchmove" , (e) => {
     if(!drawing) return;
     const touch = e.touches[0];
     const rect = canvas.getBoundingClientRect();
-    ctx.beginPath(0);
-    ctx.moveTo(touch.clientX - rect.left, touch.clientY - rect.top);
+    ctx.lineTo(touch.clientX - rect.left, touch.clientY - rect.top);
     ctx.stroke();
-    e.preventDefault;
+    e.preventDefault();
 
 });
 
 canvas.addEventListener("touchend" , () => drawing = false);
+canvas.addEventListener("touchcancel" , stopDraw);
