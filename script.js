@@ -55,3 +55,25 @@ function setEraser(){
     ctx.lineWidth = 20;
     canvas.style.cursor = "grab";
 }
+//////////////Mobile Touch Support////////
+
+canvas.addEventListener("touchstart" , (e) => {
+    drawing = true;
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingclientRect();
+    ctx.beginPath(0);
+    ctx.moveTo(touch.clientX - rect.left, touch.clientY - rect.top);
+});
+
+canvas.addEventListener("touchmove" , (e) => {
+    if(!drawing) return;
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    ctx.beginPath(0);
+    ctx.moveTo(touch.clientX - rect.left, touch.clientY - rect.top);
+    ctx.stroke();
+    e.preventDefault;
+
+});
+
+canvas.addEventListener("touchend" , () => drawing = false);
